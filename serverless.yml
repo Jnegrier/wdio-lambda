@@ -1,6 +1,7 @@
 service: wdio-lambda
-# package:
+package:
 #   individually: true
+    excludeDevDependencies: false
 plugins:
   - serverless-plugin-chrome
   - serverless-offline
@@ -8,9 +9,9 @@ plugins:
   - serverless-webpack
 provider:
     name: aws
-    runtime: nodejs8.10
+    runtime: nodejs12.x
     timeout: 300
-    region: us-east-2
+    region: eu-west-1
     # environment:
     #   DEBUG: "*" # -- DON'T ADD THIS, DOESN'T PLAY NICE WITH LAMBDA
 custom:
@@ -33,7 +34,6 @@ custom:
       - --disable-extensions
     functions:
       - runTest
-      - helloChrome
 functions:
   runTest:
     handler: src/handler.runTest
